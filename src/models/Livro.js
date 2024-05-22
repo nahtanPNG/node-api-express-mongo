@@ -12,8 +12,8 @@ const livroSchema = new mongoose.Schema(
     preco: { type: Number },
     paginas: { type: Number },
   },
-  //Desabilitando a versão do mongoose
   { versionKey: false }
+  //Desabilitando a versão do mongoose
 );
 
 //Coleção e propriedade do modelo
