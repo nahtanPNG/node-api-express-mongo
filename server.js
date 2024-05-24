@@ -3,7 +3,7 @@ import app from "./src/app.js";
 
 const PORT = 8080;
 
-//Definindo Rotas
+//Definindo Rotas com o Node puro
 // const rotas = {
 //   "/": "Curso de API",
 //   "/livros": "Lista de Livros",
