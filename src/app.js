@@ -16,10 +16,4 @@ connection.once("open", () => {
 const app = express();
 routes(app);
 
-app.delete("/livros/:id", (req, res) => {
-  const index = buscaLivro(req.params.id);
-  livros.splice(index, 1);
-  res.status(200).json("Livro removido com sucesso!");
-});
-
 export default app;
