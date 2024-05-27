@@ -1,3 +1,4 @@
+import { autor } from "../models/Autor.js";
 import livro from "../models/Livro.js";
 
 class LivroController {
@@ -24,8 +25,14 @@ class LivroController {
   }
 
   static async cadastrarLivro(req, res) {
+    const novoLivro = req.body;
     try {
-      const novoLivro = await livro.create(req.body); //Criando um novo objeto pelo mongoose
+      const autorEncontrado = await autor.findById(novoLivro.autor);
+      const livroCompleto = {
+        ...novoLivro,
+        autor: { ...autorEncontrado._doc },
+      }; //Mongo trazendo os dados do autor
+      const livroCriado = await livro.create(livroCompleto);
       res
         .status(201)
         .json({ message: "Livro criado com sucesso!", livro: novoLivro });
@@ -38,7 +45,7 @@ class LivroController {
 
   static async atualizarLivro(req, res) {
     try {
-      const  id  = req.params.id;
+      const id = req.params.id;
       await livro.findByIdAndUpdate(id, req.body); //Recebendo o id e os dados para atualizar
       res.status(200).json({ message: "Livro atualizado" });
     } catch (error) {
@@ -50,8 +57,8 @@ class LivroController {
 
   static async deletarLivro(req, res) {
     try {
-        await livro.findByIdAndDelete(req.params.id);
-        res.status(200).json("Livro removido com sucesso!");
+      await livro.findByIdAndDelete(req.params.id);
+      res.status(200).json("Livro removido com sucesso!");
     } catch (error) {
       res
         .status(500)

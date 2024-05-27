@@ -1,6 +1,6 @@
 import express from "express";
 import livros from "./livrosRoutes.js";
-import autores from "./livrosRoutes.js";
+import autores from "./autoresRoutes.js";
 
 const routes = (app) => {
   //app -> instancia do express
