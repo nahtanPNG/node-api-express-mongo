@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import express from "express";
 import dbConnect from "./config/dbConnect.js";
 import routes from "./routes/index.js";
+import TratamentoErros from "./middlewares/TratamentoErros.js";
 
 const connection = await dbConnect(); //Instanciando o banco de dados
 
@@ -15,5 +17,8 @@ connection.once("open", () => {
 
 const app = express();
 routes(app);
+
+//Middleware de erro
+app.use(TratamentoErros);
 
 export default app;
