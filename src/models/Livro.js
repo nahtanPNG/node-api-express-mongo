@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { autorSchema } from "./Autor.js";
 
 //Criando um modelo e um schema
 //Schema -> Objeto de configuração que define a estrutura e as propriedades
@@ -20,7 +19,7 @@ const livroSchema = new mongoose.Schema(
     paginas: { type: Number },
     autor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: autorSchema,
+      ref: "autores",
       required: [true, "O autor do livro é obrigatório"],
     },
   },
