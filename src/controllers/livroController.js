@@ -32,10 +32,10 @@ class LivroController {
         ...novoLivro,
         autor: { ...autorEncontrado._doc },
       }; //Mongo trazendo os dados do autor
-      const livroCriado = await livro.create(livroCompleto);
+      await livro.create(livroCompleto);
       res
         .status(201)
-        .json({ message: "Livro criado com sucesso!", livro: novoLivro });
+        .json({ message: "Livro criado com sucesso!", livro: livroCompleto });
     } catch (error) {
       res
         .status(500)
